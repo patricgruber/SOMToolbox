@@ -46,5 +46,13 @@ class SOMToolBox_Parse:
         elif splitted[0] == '$YDIM':        df['ydim']          = int(splitted[1])
         elif splitted[0] == '$VEC_DIM':     df['vec_dim']       = int(splitted[1])
         elif splitted[0] == '$CLASS_NAMES': df['classes_names'] = splitted[1:] 
-        return df 
-        
+        return df
+
+    def read_tv_file(self):
+        if not self.filename.endswith(".tv"):
+            raise ValueError("Only .tv files allowed.")
+
+        with open(self.filename, "r") as f:
+            lines_without_headers = f.readlines()[4:]
+        attribute_names = [line.split()[1] for line in lines_without_headers]
+        return attribute_names
