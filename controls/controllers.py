@@ -4,8 +4,8 @@ from bokeh.palettes import Greys256
 
 OBJECTS_ALL = {'Component Planes': 0, 'Hit Histogram': 1, 'U-matrix': 2, 'D-Matrix': 3,  
                'P-matrix & U*-matrix': 4, 'Smoothed Data Histograms': 5, 'Pie Chart': 6, 
-               'Neighbourhood Graph': 7, 'Chessboard': 8, 'Clustering': 9, 'Metro Map': 10, 
-               'Quantization Error': 11,  'Time Series': 12} 
+               'Neighbourhood Graph': 7, 'Chessboard': 8, 'Clustering': 9, 'Metro Map': 10,  'Metro Map 2.0': 11,
+               'Quantization Error': 12,  'Time Series': 13}
 
 _COLOURS_93 = ['#FF5555','#5555FF','#55FF55','#FFFF55','#FF55FF','#55FFFF','#FFAFAF','#808080',
               '#C00000','#0000C0','#00C000','#C0C000','#C000C0','#00C0C0','#404040','#FF4040',
@@ -236,6 +236,38 @@ class MetroMapController(param.Parameterized):
     @param.depends("level", watch=True)
     def _change_water_level(self,):
         self.water_level = [0, self.level, 1]
+
+
+class MetroMap2Controller(param.Parameterized):
+    stops = param.Integer(3, bounds=(3, None), label='Number of bins')
+    components_int = param.ListSelector(default=[], objects=[], precedence=-1)
+    components = param.ListSelector(default=[], objects=[])
+    snapping = param.Boolean(False, label='Snap lines')
+    labelling = param.Boolean(False, label='Show labels')
+
+    def __init__(self, calculate, dim, component_names, **params):
+        super(MetroMap2Controller, self).__init__(**params)
+        self._calculate = calculate
+        self.param.components_int.objects = [i for i in range(dim)]
+        if component_names is not None:
+            self.param.components.objects = component_names
+        else:
+            self.param.components.objects = [str(i) for i in range(dim)]
+        self.components_int = [0]
+
+    @param.depends("components", watch=True)
+    def _change_components(self, ):
+        self.components_int = [self.param.components.objects.index(name) for name in self.components]
+        self._calculate(False)
+
+    @param.depends("snapping", watch=True)
+    def _change_lines(self, ):
+        self._calculate(False)
+
+    @param.depends("stops", watch=True)
+    def _change_stops(self, ):
+        self._calculate(True)
+
 
 class ChessboardController(param.Parameterized):
 

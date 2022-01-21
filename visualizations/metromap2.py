@@ -1,6 +1,6 @@
 import numpy as np
 from visualizations.iVisualization import VisualizationInterface
-from controls.controllers import MetroMapController
+from controls.controllers import MetroMap2Controller
 import panel as pn
 import holoviews as hv
 from holoviews.streams import Pipe
@@ -12,7 +12,7 @@ class MetroMap2(VisualizationInterface):
 
     def __init__(self, main):
         self._main = main
-        self._controls = MetroMapController(self._calculate, self._main._dim, self._main._component_names,
+        self._controls = MetroMap2Controller(self._calculate, self._main._dim, self._main._component_names,
                                             name='Metro Map visualization 2.0')
         self._raw_solutions = []
         self._snapped_lines = []

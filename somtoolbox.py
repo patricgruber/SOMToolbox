@@ -105,6 +105,7 @@ class SOMToolbox():
             self._visualizations.append(Chessboard(self))
             self._visualizations.append(Clustering(self))
             self._visualizations.append(MetroMap(self))
+            self._visualizations.append(MetroMap2(self))
             self._visualizations.append(QError(self))
             self._visualizations.append(TimeSeries(self))     
 
