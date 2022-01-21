@@ -32,6 +32,7 @@ from visualizations.upmatrix import UStar_PMatrix
 from visualizations.neighbourhood_graph import NeighbourhoodGraph
 from visualizations.clustering import Clustering
 from visualizations.metromap import MetroMap
+from visualizations.metromap2 import MetroMap2
 from visualizations.piechart import PieChart
 from visualizations.chessboard import Chessboard
 from visualizations.time_series import TimeSeries
@@ -39,7 +40,7 @@ from skimage.transform import resize
 
 OBJECTS_CLASSES = [ComponentPlane, HitHist, UMatrix, DMatrix, UStar_PMatrix, 
                    SDH, PieChart, NeighbourhoodGraph, Chessboard, Clustering, 
-                   MetroMap, QError, TimeSeries]
+                   MetroMap, MetroMap2, QError, TimeSeries]
 
 _COLOURS_93 = ['#FF5555','#5555FF','#55FF55','#FFFF55','#FF55FF','#55FFFF','#FFAFAF','#808080',
               '#C00000','#0000C0','#00C000','#C0C000','#C000C0','#00C0C0','#404040','#FF4040',
