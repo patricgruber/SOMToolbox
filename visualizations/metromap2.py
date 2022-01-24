@@ -70,13 +70,17 @@ class MetroMap2(VisualizationInterface):
             overlay.append(hv.Path(np.array(pts)).opts(color=c, line_width=4))
             overlay.append(hv.Points(np.array(pts)).opts(fill_color=c, color='black', size=15))
 
-            label = self._main._component_names[self._controls.components_int[i]]
-
-            end, start = pts[0], pts[-1]
             if self._controls.labelling:
+                end, start = pts[0], pts[-1]
                 # endpoint labels
                 overlay.append(hv.Text(start[0], start[1], "+", 15))
                 overlay.append(hv.Text(end[0], end[1], "-", 15))
+
+        for i, pts in enumerate(lines):
+            c = colors.Category20[20][self._controls.components_int[i]]
+            if self._controls.labelling:
+                label = self._main._component_names[self._controls.components_int[i]]
+                start = pts[-1]
 
                 # attribute label shadow
                 overlay.append(hv.Text(start[0] + 0.028, start[1] - 0.003, label, 12, halign='left').opts(color='black'))
