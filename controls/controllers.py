@@ -268,6 +268,10 @@ class MetroMap2Controller(param.Parameterized):
     def _change_stops(self, ):
         self._calculate(True)
 
+    @param.depends("labelling", watch=True)
+    def _change_labels(self, ):
+        self._calculate(False)
+
 
 class ChessboardController(param.Parameterized):
 
