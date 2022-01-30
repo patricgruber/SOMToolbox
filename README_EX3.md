@@ -17,7 +17,7 @@ Create an empty environment using the following command:
 
 ```conda create --name som_toolbox --no-default-packages```
 
-Make sure that python3 is included in the environment by doing the following:
+#### Make sure that python3 is included in the environment by doing the following:
 
 Activate the environment using
 
