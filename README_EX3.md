@@ -7,11 +7,26 @@ The Somoclu library may lead to some problems if the environment contains any ve
 One solution for this is to create an empty Anaconda environment to start with. Then we are able to add the Somoclu library, which will install all the required
 packages automatically. After that all the additional packages needed can be installed without a problem.
 
+### Prerequisites
+
+Anaconda is installed on the system https://www.anaconda.com/
+
 ### Step 1:
 
 Create an empty environment using the following command:
 
 ```conda create --name som_toolbox --no-default-packages```
+
+Make sure that python3 is included in the environment by doing the following:
+
+Activate the environment using
+
+```conda activate som_toolbox```
+
+Type the following command in the terminal to start the python3 interpreter installed in the environment
+
+```python3```
+
 
 ### Step 2:
 
